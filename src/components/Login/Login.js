@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 
@@ -22,10 +22,12 @@ const Login = () => {
     const handleGoogleSignIn = () => {
         signInWithGoogle()
     }
+    const location = useLocation();
+    let from = location.state?.from?.pathname || '/';
 
     if (userWithGoogle || userWithEmail) {
         toast('Login successfully');
-        navigate('/news');
+        navigate(from, { replace: true });
     }
     if (errorWithGoogle) {
         toast.error(errorWithGoogle?.message)

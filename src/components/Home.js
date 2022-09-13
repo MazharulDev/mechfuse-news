@@ -1,10 +1,10 @@
 import React from 'react';
-import Login from './Login/Login';
+import News from './News/News';
 
 const Home = () => {
     return (
         <div>
-            <Login/>
+            <News />
         </div>
     );
 };

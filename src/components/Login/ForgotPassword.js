@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSendPasswordResetEmail } from 'react-firebase-hooks/auth';
+import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 
@@ -27,6 +28,7 @@ const ForgotPassword = () => {
     return (
         <div className='flex justify-center items-center h-screen'>
             <div className="card w-96 bg-base-100 shadow-xl">
+                <button className='p-2 bg-green-600 text-white'><Link to="/login">Back to Login</Link></button>
                 <div className="card-body">
                     <h2 className="card-title">Enter Your Email</h2>
                     <input onChange={handleEmailChange} className='input input-bordered w-full max-w-xs my-4' type="email" name="email" placeholder='Enter Your Email' required />

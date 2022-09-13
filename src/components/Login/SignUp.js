@@ -7,35 +7,35 @@ import auth from '../../firebase.init';
 
 
 const SignUp = () => {
-    const navigate=useNavigate();
-    const [error,setError]=useState('')
+    const navigate = useNavigate();
+    const [error, setError] = useState('')
     const [
         createUserWithEmailAndPassword,
         userWithEmail,
         loadingWithEmail,
         errorWithEmail,
-      ] = useCreateUserWithEmailAndPassword(auth,{ sendEmailVerification: true });
-      const [updateProfile, updating] = useUpdateProfile(auth);
+    ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+    const [updateProfile, updating] = useUpdateProfile(auth);
     const { register, formState: { errors }, handleSubmit } = useForm();
     const onSubmit = async data => {
         if (data.password !== data.confirmPassword) {
             setError('Two password did not match')
             return;
         }
-        await createUserWithEmailAndPassword(data.email,data.password)
-        await updateProfile({displayName:data.name})
+        await createUserWithEmailAndPassword(data.email, data.password)
+        await updateProfile({ displayName: data.name })
     };
 
-    useEffect(()=>{
+    useEffect(() => {
         if (userWithEmail) {
-            navigate('/news');
+            navigate('/');
         }
-    },[navigate,userWithEmail])
+    }, [navigate, userWithEmail])
 
-    if(errorWithEmail){
+    if (errorWithEmail) {
         toast.error(errorWithEmail?.message)
     }
-    if(loadingWithEmail|| updating){
+    if (loadingWithEmail || updating) {
         return <p>Loading...</p>
     }
     return (
@@ -162,7 +162,7 @@ const SignUp = () => {
                                 {errors.password?.type === 'minLength' && <span className="label-text-alt text-red-500">{errors.password.message}</span>}
                             </label>
                         </div>
-                            <p className='text-red-500 my-4'>{error}</p>
+                        <p className='text-red-500 my-4'>{error}</p>
                         <input className='btn btn-primary text-white w-full' type="submit" />
                     </form>
                     <p><small>Already have an account?  <Link className='text-primary hover:underline' to="/">Login</Link></small></p>
