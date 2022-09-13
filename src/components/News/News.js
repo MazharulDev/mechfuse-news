@@ -41,7 +41,7 @@ const News = () => {
         }
       </div>
       <div className='mt-5'>
-        <p className='p-6 text-center bg-gray-700 text-white'>Created by <a className='text-blue-500' href="https://web.facebook.com/MazharulDev/">Mazharul Islam</a></p>
+        <p className='p-6 text-center bg-gray-700 text-white'>Created by <a target='_blank' className='text-blue-500' href="https://mazharul.netlify.app/">Mazharul Islam</a></p>
       </div>
     </div>
   );
